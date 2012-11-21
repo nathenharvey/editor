@@ -18,9 +18,8 @@
 # limitations under the License.
 #
 
-template '/etc/profile.d/editor.sh' do
-  owner 'root'
-  group 'root'
-  mode '0755'
-  source 'editor.sh.erb'
+%w(EDITOR VISUAL).each do |env|
+  magic_shell_environment env do
+    value node['editor']['default']
+  end
 end
